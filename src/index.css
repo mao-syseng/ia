@@ -128,3 +128,12 @@ body {
 a {
   color: #ff3796;
 }
+
+header {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+header * {
+  margin: 0;
+}

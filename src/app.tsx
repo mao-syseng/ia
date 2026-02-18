@@ -1,28 +1,19 @@
 import { useEffect, useState } from "preact/hooks";
 import type { FunctionalComponent } from "preact";
-import page1 from "./page1";
+import unicode from "./unicode";
+import notFound from "./notFound";
+import spil from "./spil";
+import papir from "./papir";
 
 function Index() {
   return <h1>Index</h1>;
 }
 
-function Page0() {
-  return <h1>Page 0</h1>;
-}
-
-function Page2() {
-  return <h1>Page 2</h1>;
-}
-
-function NotFound() {
-  return <h1>404</h1>;
-}
-
 const routes: Record<string, FunctionalComponent> = {
   "": Index,
-  "0": Page0,
-  "1": page1,
-  "2": Page2,
+  "0": spil,
+  "1": unicode,
+  "2": papir,
 };
 
 export function App() {
@@ -36,24 +27,27 @@ export function App() {
   const path = usePath();
   const segment = path.slice(1);
 
-  const Component = routes[segment] || NotFound;
+  const Component = routes[segment] || notFound;
 
   return (
     <>
-      <header>
-        <a style="text-decoration: none;" class="b" href="/0">
+      <header className="nm">
+        <a style="text-decoration: none;" class="b" href="/">
           <pre>{title2}</pre>
         </a>
-      </header>
-      <main>
         <ul>
           <li>
-            <a href="/1">Unicode symboler</a>
+            <a href="/0">Spil</a>
           </li>
           <li>
-            <a href="/2">intet lige nu</a>
+            <a href="/1">Unicode</a>
+          </li>
+          <li>
+            <a href="/2">Papir</a>
           </li>
         </ul>
+      </header>
+      <main>
 
         <Component />
       </main>
