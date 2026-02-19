@@ -1,3 +1,4 @@
+/* modern-normalizer */
 *,
 ::before,
 ::after {
@@ -127,6 +128,8 @@ body {
 
 a {
   color: #ff3796;
+  padding: 6px;
+  display: inline-block;
 }
 
 header {
@@ -134,6 +137,13 @@ header {
   display: flex;
   align-items: center;
 }
-header * {
+header pre {
   margin: 0;
+}
+header a {
+  padding: 0;
+}
+header li {
+  margin: 4px 0 4px 0;
+  font-weight: bold;
 }
