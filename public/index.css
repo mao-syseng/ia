@@ -119,6 +119,11 @@ header p span {
 	color: var(--c4)
 }
 
+header p a {
+	font-weight: bolder;
+	font-style: italic;
+}
+
 .a {
   color: var(--c3);
 }
@@ -163,11 +168,24 @@ a {
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
+  position: relative;
+}
+
+.card .id {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--c4);
+  letter-spacing: 0.1em;
 }
 
 .card img {
   width: 100%;
-  height: auto;
+  height: 150px;
   object-fit: contain;
   flex-shrink: 0;
 }
