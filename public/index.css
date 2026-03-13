@@ -115,6 +115,10 @@ body {
   margin: 4rem;
 }
 
+header p span {
+	color: var(--c4)
+}
+
 .a {
   color: var(--c3);
 }
@@ -127,6 +131,21 @@ a {
   color: var(--c3);
   padding: 6px;
   display: inline-block;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+    place-items: center;
+  }
 }
 
 .card {
