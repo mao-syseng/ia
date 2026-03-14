@@ -7,3 +7,7 @@
 - folk kan submitte en tegning og få halv pris hvis folk køber
 
 - betaling er optional, hvis man udfylder formen får man klistermærket og kan få et link til "buy me a coffee" for at betale. 
+
+
+
+` magick ./img/002.png -resize 190 -quality 80 002.webp`
