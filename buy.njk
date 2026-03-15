@@ -25,13 +25,14 @@ layout: false
   <body>
     <header>
       <h1>iå.dk</h1>
-      <p>
-        <a href="/">← tilbage til alle klistermærker</a>
+        <p>
+        <a href="/">← tilbage</a>
       </p>
     </header>
     <div class="buy-page">
       <div class="buy-card">
         <img
+        height="250"
           fetchpriority="high"
           src="/public/{{ card.id }}.webp"
           alt="klistermærke nr {{ card.id }}"
@@ -50,9 +51,10 @@ layout: false
               <span class="b">metallisk</span> blæk af høj kvalitet
             </li>
             <li>dit data bliver slettet lige når den er leveret</li>
-            <li>intet AI</li>
+            <li class="a">kun i albertslund</li>
           </ul>
           <form name="addresse" netlify>
+            <input type="hidden" name="redirect" value="/tak/" />
             <p>
               <label
                 >vej og vejnummer:

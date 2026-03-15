@@ -8,62 +8,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Køb klistermærke nr 003 - Håndlavet klistermærke af høj kvalitet med metalisk glitter blæk."
+      content="Indsend din kunst til iå.dk - få dine tegninger lavet til klistermærker og få halvdelen af prisen når de sælges."
     />
-    <title>Køb klistermærke 003 - iå.dk</title>
+    <title>Indsend din kunst - iå.dk</title>
   </head>
   <body>
     <header>
-      <h1>iå.dk</h1>
-        <p>
+      <h1 class="b">iå.dk</h1>
+      <p>
         <a href="/">← tilbage</a>
       </p>
     </header>
     <div class="buy-page">
       <div class="buy-card">
-        <img
-        height="250"
-          fetchpriority="high"
-          src="/public/003.webp"
-          alt="klistermærke nr 003"
-        />
         <div class="card-details">
-          <h3 class="b">
-            <b>20 kr</b>
-          </h3>
+          <h2 class="b">Indsend din kunst ✨</h2>
           <ul>
             <li>
-              halvdelen af prisen går direkte til
-              <span class="a">kunstneren</span>
+              <span class="a">halvdelen</span> af prisen går direkte til dig når dit klistermærke sælges
             </li>
             <li>
-              håndlavet med <span class="a">glitrende</span> og
-              <span class="b">metallisk</span> blæk af høj kvalitet
+              Vi laver dine tegninger til håndlavede klistermærker med <span class="b">glitrende</span> og <span class="a">metallisk</span> blæk
             </li>
-            <li>dit data bliver slettet lige når den er leveret</li>
-            <li class="a">kun i albertslund</li>
+            <li>Ingen AI - kun ægte kunst fra rigtige mennesker</li>
+            <li>Dit data bliver behandlet sikkert og slettet efter brug</li>
           </ul>
-          <form name="addresse" netlify>
-            <input type="hidden" name="redirect" value="/tak/" />
+          <form name="kunst-indsendelse" netlify>
             <p>
               <label
-                >vej og vejnummer:
+                >Dit navn:
                 <input
                   required
                   placeholder="skriv her"
                   type="text"
-                  name="vej-og-nummer"
+                  name="navn"
               /></label>
             </p>
             <p>
               <label
-                >andre kommentare:
-                <input placeholder="skriv her" type="text" name="vej-og-nummer"
+                >Instagram eller email:
+                <input
+                  required
+                  placeholder="@ditinstagram eller din@email.dk"
+                  type="text"
+                  name="kontakt"
               /></label>
             </p>
             <p>
-              <button type="submit" class="buy-button">
-                bestil nu
+              <label
+                >Beskriv din kunst eller andre kommentarer:
+                <input
+                  placeholder="Fortæl os om din kunst..."
+                  name="beskrivelse"
+                ></input>
+              </label>
+            </p>
+            <p>
+              <button type="submit">
+                indsend nu
                 <div class="star-1">
   <svg
     xmlns="http://www.w3.org/2000/svg"

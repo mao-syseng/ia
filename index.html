@@ -16,17 +16,17 @@
   </head>
   <body>
     <header>
-      <h1>iå.dk</h1>
+      <h1 class="b">iå.dk</h1>
       <p>
         <i> ✨ håndlavede klistermærker ✨ </i>
         , vil du have <span><b>DIN</b></span> tegning med på siden?
-        <a href="">klik her</a>
+        <a href="/indsend/">klik her</a>
       </p>
     </header>
     <div class="cards-container">
-      {% for card in data %}
-        {% include "card.njk", id: card.id, buyText: card.buyText %}
-      {% endfor %}
+      {% include "placeholder-card.njk" %}
+      {% for card in data %} {% include "card.njk", id: card.id, buyText:
+      card.buyText %} {% endfor %}
     </div>
   </body>
 </html>
