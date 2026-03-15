@@ -124,6 +124,10 @@ header p a {
 	font-style: italic;
 }
 
+p label {
+  font-family: monospace;
+}
+
 .a {
   color: var(--c3);
 }

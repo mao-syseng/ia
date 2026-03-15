@@ -27,17 +27,35 @@
           alt="klistermærke nr 000"
         />
         <div class="card-details">
-          <h2>nr. 000</h2>
+          <h3 class="b">
+            <b>20 kr</b>
+          </h3>
           <ul>
-            <li>halvdelen af prisen går direkte til <span class="a">kunstneren</span></li>
-            <li>håndlavet med <span class="a">glitrende</span> og <span class="b">metallisk</span> blæk af høj kvalitet</li>
+            <li>
+              halvdelen af prisen går direkte til
+              <span class="a">kunstneren</span>
+            </li>
+            <li>
+              håndlavet med <span class="a">glitrende</span> og
+              <span class="b">metallisk</span> blæk af høj kvalitet
+            </li>
             <li>dit data bliver slettet lige når den er leveret</li>
           </ul>
-          <p class="price">værdi: 20 kr</p>
           <form name="addresse" netlify>
             <p>
               <label
-                >vej og nummer: <input placeholder="skriv her" type="text" name="vej-og-nummer"
+                >vej og vejnummer:
+                <input
+                  required
+                  placeholder="skriv her"
+                  type="text"
+                  name="vej-og-nummer"
+              /></label>
+            </p>
+            <p>
+              <label
+                >andre kommentare:
+                <input placeholder="skriv her" type="text" name="vej-og-nummer"
               /></label>
             </p>
             <p>
@@ -196,11 +214,6 @@
               </button>
             </p>
           </form>
-
-          <p class="info">
-            Håndlavet klistermærke af høj kvalitet med metalisk glitter blæk på
-            ekstra tykt papir.
-          </p>
         </div>
       </div>
     </div>
