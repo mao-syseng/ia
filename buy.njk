@@ -32,44 +32,36 @@ layout: false
         <div class="card-details">
           <h3 class="b">
             <b>{{ card.price }} kr</b>
+            <a href="https://buymeacoffee.com/iadk" target="_blank" rel="noopener noreferrer" class="a">
+              → betal her
+            </a>
           </h3>
-       <form name="addresse" method="POST" action="/" data-netlify="true">
-  <input type="hidden" name="form-name" value="addresse">
-  <input type="hidden" name="redirect" value="/tak">
-
-  <p>
-    <label>
-      vej og vejnummer:
-      <input required placeholder="skriv her" type="text" name="vej-og-nummer">
-    </label>
-  </p>
-
-  <p>
-    <label>
-      andre kommentarer:
-      <input placeholder="skriv her" type="text" name="kommentar">
-    </label>
-  </p>
-
-  <p>
-    <button type="submit" class="buy-button">
-      bestil nu {% include "button.njk" %}
-    </button>
-  </p>
-</form>
+          <form name="addresse" netlify>
+            <p>
+              <label>vej og vejnummer: <input required placeholder="skriv her" type="text" name="vej-og-nummer"/></label>
+            </p>
+            <p>
+              <label>andre kommentare: <input placeholder="skriv her" type="text" name="vej-og-nummer"/></label>
+            </p>
+            <p>
+              <button type="submit" class="buy-button">
+                bestil nu {% include "button.njk" %}
+              </button>
+            </p>
+          </form>
           <ul>
             <li>
               halvdelen af prisen går direkte til
-              <span class="a">kunstneren</span>
+              <span class="a">kunstneren.</span>
             </li>
             <li>
               håndlavet med
-              <span class="a">glitrende</span>
+              <span class="a">glitrende sort</span>
               og
-              <span class="b">metallisk</span>
-              blæk af høj kvalitet
+              <span class="b">metallisk blå/pink</span>
+              blæk.
             </li>
-            <li>dit data bliver slettet lige når den er leveret</li>
+            <li>dit data bliver slettet lige når den er leveret.</li>
           </ul>
         </div>
       </div>
