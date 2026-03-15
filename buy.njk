@@ -33,24 +33,30 @@ layout: false
           <h3 class="b">
             <b>{{ card.price }} kr</b>
           </h3>
-          <form name="addresse" method="POST" action="/tak" data-netlify="true">
-            <input type="hidden" name="form-name" value="addresse">
-            <p>
-              <label>
-                vej og vejnummer: <input required placeholder="skriv her" type="text" name="vej-og-nummer">
-              </label>
-            </p>
-            <p>
-              <label>
-                andre kommentarer: <input placeholder="skriv her" type="text" name="kommentar">
-              </label>
-            </p>
-            <p>
-              <button type="submit" class="buy-button">
-                bestil nu {% include "button.njk" %}
-              </button>
-            </p>
-          </form>
+       <form name="addresse" method="POST" action="/" data-netlify="true">
+  <input type="hidden" name="form-name" value="addresse">
+  <input type="hidden" name="redirect" value="/tak">
+
+  <p>
+    <label>
+      vej og vejnummer:
+      <input required placeholder="skriv her" type="text" name="vej-og-nummer">
+    </label>
+  </p>
+
+  <p>
+    <label>
+      andre kommentarer:
+      <input placeholder="skriv her" type="text" name="kommentar">
+    </label>
+  </p>
+
+  <p>
+    <button type="submit" class="buy-button">
+      bestil nu {% include "button.njk" %}
+    </button>
+  </p>
+</form>
           <ul>
             <li>
               halvdelen af prisen går direkte til
