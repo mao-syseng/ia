@@ -4,29 +4,13 @@ pagination:
   size: 1
   alias: card
 permalink: "/køb/{{ card.id }}/"
-layout: false
+layout: layout.njk
+title: "Køb klistermærke {{ card.id }} - iå.dk"
+description: "Køb klistermærke nr {{ card.id }} - Håndlavet klistermærke af høj kvalitet med metalisk glitter blæk."
+backLink: true
 ---
 
-<!doctype html>
-<html lang="da">
-  <head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" type="image/svg+xml" href="/public/favicon.svg"/>
-    <link rel="stylesheet" href="/public/index.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta
-      name="description"
-      content="Køb klistermærke nr {{ card.id }} - Håndlavet klistermærke af høj kvalitet med metalisk glitter blæk."/>
-    <title>Køb klistermærke {{ card.id }} - iå.dk</title>
-  </head>
-  <body>
-    <header>
-      <h1>iå.dk</h1>
-      <p>
-        <a href="/">← tilbage</a>
-      </p>
-    </header>
-    <div class="buy-page">
+<div class="buy-page">
       <div class="buy-card">
         <img height="250" fetchpriority="high" src="/public/{{ card.id }}.webp" alt="klistermærke nr {{ card.id }}"/>
         <div class="card-details">
@@ -66,5 +50,3 @@ layout: false
         </div>
       </div>
     </div>
-  </body>
-</html>

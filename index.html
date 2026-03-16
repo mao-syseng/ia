@@ -1,32 +1,11 @@
-<!doctype html>
-<html lang="da">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
-    <link rel="stylesheet" href="/public/index.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Hjemmebagte klistermærker af høj kvalitet. Lavet med metalisk glitter blæk på ekstra tykt papir."
-    />
-    <title>
-      Håndlavede klistermærker, få dine tegninger med på siden og få en bid af
-      kagen når de er solgt - lavet med glitrende og metallisk blæk.
-    </title>
-  </head>
-  <body>
-    <header>
-      <h1 class="b">iå.dk</h1>
-      <p>
-        <i> ✨ håndlavede klistermærker ✨ </i>
-        , vil du have <span><b>DIN</b></span> tegning med på siden?
-        <a href="/indsend/">klik her</a>
-      </p>
-    </header>
-    <div class="cards-container">
+---
+layout: layout.njk
+title: "Håndlavede klistermærker, få dine tegninger med på siden og få en bid af kagen når de er solgt - lavet med glitrende og metallisk blæk."
+description: "Hjemmebagte klistermærker af høj kvalitet. Lavet med metalisk glitter blæk på ekstra tykt papir."
+---
+
+<div class="cards-container">
       {% include "placeholder-card.njk" %}
       {% for card in data %} {% include "card.njk", id: card.id, buyText:
       card.buyText %} {% endfor %}
     </div>
-  </body>
-</html>

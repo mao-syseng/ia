@@ -70,14 +70,6 @@ button,
   -webkit-appearance: button;
 }
 
-legend {
-  padding: 0;
-}
-
-progress {
-  vertical-align: baseline;
-}
-
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
   height: auto;
@@ -97,10 +89,6 @@ progress {
   font: inherit;
 }
 
-summary {
-  display: list-item;
-}
-
 /* custom css */
 :root {
   --c1: #302387;
@@ -116,12 +104,12 @@ body {
 }
 
 header p span {
-	color: var(--c4)
+  color: var(--c4);
 }
 
 header p a {
-	font-weight: bolder;
-	font-style: italic;
+  font-weight: bolder;
+  font-style: italic;
 }
 
 p label {

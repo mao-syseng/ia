@@ -393,206 +393,24 @@ a:active button .star-6 {
 
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Køb klistermærke nr {{ card.id }} - Håndlavet klistermærke af høj kvalitet med metalisk glitter blæk." />
-    <title>Køb klistermærke {{ card.id }} - iå.dk</title>
+    <meta name="description" content="{{ description }}" />
+    <title>{{ title }}</title>
   </head>
   <body>
     <header>
       <h1 class="b">iå.dk</h1>
-      
+      {% if headerText %}
+        <p>{{ headerText | safe }}</p>
+      {% elif backLink %}
         <p><a href="/">← tilbage</a></p>
-      
+      {% else %}
+        <p>
+          <i> ✨ håndlavede klistermærker ✨ </i>
+          , vil du have <span><b>DIN</b></span> tegning med på siden?
+          <a href="/indsend/">klik her</a>
+        </p>
+      {% endif %}
     </header>
-    
-<div class="buy-page">
-      <div class="buy-card">
-        <img height="250" fetchpriority="high" src="/public/000.webp" alt="klistermærke nr 000"/>
-        <div class="card-details">
-          <h3 class="b">
-            <b>20 kr</b>
-            <a href="https://buymeacoffee.com/iadk" target="_blank" rel="noopener noreferrer" class="a">
-              → betal her
-            </a>
-          </h3>
-          <form name="addresse" netlify>
-            <p>
-              <label>vej og vejnummer: <input required placeholder="skriv her" type="text" name="vej-og-nummer"/></label>
-            </p>
-            <p>
-              <label>andre kommentare: <input placeholder="skriv her" type="text" name="kommentar"/></label>
-            </p>
-            <p>
-              <button type="submit" class="buy-button">
-                bestil nu <div class="star-1">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xml:space="preserve"
-    version="1.1"
-    style="
-      shape-rendering: geometricPrecision;
-      text-rendering: geometricPrecision;
-      image-rendering: optimizeQuality;
-      fill-rule: evenodd;
-      clip-rule: evenodd;
-    "
-    viewBox="0 0 784.11 815.53"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-  >
-    <defs></defs>
-    <g id="Layer_x0020_1">
-      <metadata id="CorelCorpID_0Corel-Layer"></metadata>
-      <path
-        class="fil0"
-        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
-      ></path>
-    </g>
-  </svg>
-</div>
-<div class="star-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xml:space="preserve"
-    version="1.1"
-    style="
-      shape-rendering: geometricPrecision;
-      text-rendering: geometricPrecision;
-      image-rendering: optimizeQuality;
-      fill-rule: evenodd;
-      clip-rule: evenodd;
-    "
-    viewBox="0 0 784.11 815.53"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-  >
-    <defs></defs>
-    <g id="Layer_x0020_1">
-      <metadata id="CorelCorpID_0Corel-Layer"></metadata>
-      <path
-        class="fil0"
-        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
-      ></path>
-    </g>
-  </svg>
-</div>
-<div class="star-3">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xml:space="preserve"
-    version="1.1"
-    style="
-      shape-rendering: geometricPrecision;
-      text-rendering: geometricPrecision;
-      image-rendering: optimizeQuality;
-      fill-rule: evenodd;
-      clip-rule: evenodd;
-    "
-    viewBox="0 0 784.11 815.53"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-  >
-    <defs></defs>
-    <g id="Layer_x0020_1">
-      <metadata id="CorelCorpID_0Corel-Layer"></metadata>
-      <path
-        class="fil0"
-        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
-      ></path>
-    </g>
-  </svg>
-</div>
-<div class="star-4">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xml:space="preserve"
-    version="1.1"
-    style="
-      shape-rendering: geometricPrecision;
-      text-rendering: geometricPrecision;
-      image-rendering: optimizeQuality;
-      fill-rule: evenodd;
-      clip-rule: evenodd;
-    "
-    viewBox="0 0 784.11 815.53"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-  >
-    <defs></defs>
-    <g id="Layer_x0020_1">
-      <metadata id="CorelCorpID_0Corel-Layer"></metadata>
-      <path
-        class="fil0"
-        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
-      ></path>
-    </g>
-  </svg>
-</div>
-<div class="star-5">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xml:space="preserve"
-    version="1.1"
-    style="
-      shape-rendering: geometricPrecision;
-      text-rendering: geometricPrecision;
-      image-rendering: optimizeQuality;
-      fill-rule: evenodd;
-      clip-rule: evenodd;
-    "
-    viewBox="0 0 784.11 815.53"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-  >
-    <defs></defs>
-    <g id="Layer_x0020_1">
-      <metadata id="CorelCorpID_0Corel-Layer"></metadata>
-      <path
-        class="fil0"
-        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
-      ></path>
-    </g>
-  </svg>
-</div>
-<div class="star-6">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xml:space="preserve"
-    version="1.1"
-    style="
-      shape-rendering: geometricPrecision;
-      text-rendering: geometricPrecision;
-      image-rendering: optimizeQuality;
-      fill-rule: evenodd;
-      clip-rule: evenodd;
-    "
-    viewBox="0 0 784.11 815.53"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-  >
-    <defs></defs>
-    <g id="Layer_x0020_1">
-      <metadata id="CorelCorpID_0Corel-Layer"></metadata>
-      <path
-        class="fil0"
-        d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
-      ></path>
-    </g>
-  </svg>
-</div>
-
-              </button>
-            </p>
-          </form>
-          <ul>
-            <li>
-              halvdelen af prisen går direkte til
-              <span class="a">kunstneren.</span>
-            </li>
-            <li>
-              håndlavet med
-              <span class="a">glitrende sort</span>
-              og
-              <span class="b">metallisk blå/pink</span>
-              blæk.
-            </li>
-            <li>dit data bliver slettet lige når den er leveret.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    {{ content | safe }}
   </body>
 </html>
