@@ -20,13 +20,17 @@ backLink: true
           → betal her
         </a>
       </h3>
-      <form name="addresse" netlify>
-        <input type="hidden" name="item-id" value="{{ card.id }}"></input>
-        <p>
-          <label>vej og vejnummer: <input required placeholder="skriv her" type="text" name="vej-og-nummer"/></label>
+      <form name="addresse" method="POST" netlify netlify-honeypot="bot-field" action="/tak">
+        <input type="hidden" name="form-name" value="addresse" />
+        <input type="hidden" name="item-id" value="{{ card.id }}" />
+        <p style="display: none;">
+          <label>Don't fill this out: <input name="bot-field" /></label>
         </p>
         <p>
-          <label>andre kommentare: <input placeholder="skriv her" type="text" name="kommentar"/></label>
+          <label>vej og vejnummer: <input required placeholder="skriv her" type="text" name="vej-og-nummer" /></label>
+        </p>
+        <p>
+          <label>andre kommentare: <input placeholder="skriv her" type="text" name="kommentar" /></label>
         </p>
         <p>
           <button type="submit" class="buy-button">

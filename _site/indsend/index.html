@@ -418,7 +418,11 @@ a:active button .star-6 {
             <li>ingen AI - kun ægte kunst fra rigtige mennesker</li>
             <li>dit data bliver behandlet sikkert og slettet efter brug</li>
           </ul>
-          <form name="kunst-indsendelse" netlify>
+          <form name="kunst-indsendelse" method="POST" netlify netlify-honeypot="bot-field" action="/tak">
+            <input type="hidden" name="form-name" value="kunst-indsendelse" />
+            <p style="display: none;">
+              <label>Don't fill this out: <input name="bot-field" /></label>
+            </p>
             <p>
               <label
                 >dit navn: &nbsp; &nbsp; &nbsp; &nbsp;
@@ -444,9 +448,9 @@ a:active button .star-6 {
                 >andre kommentarer:
                 <input
                   placeholder="Fortæl os om din kunst..."
+                  type="text"
                   name="beskrivelse"
-                ></input>
-              </label>
+              /></label>
             </p>
             <p>
               <button type="submit">
