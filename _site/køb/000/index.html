@@ -414,16 +414,13 @@ a:active button .star-6 {
           → betal her
         </a>
       </h3>
-      <form name="addresse" method="POST" netlify netlify-honeypot="bot-field" action="/tak">
-        <input type="hidden" name="item-id" value="000" />
-        <p style="display: none;">
-          <label>Don't fill this out: <input name="bot-field" /></label>
+      <form name="addresse" method="POST" netlify>
+        <input type="hidden" name="item-id" value="000"/>
+        <p>
+          <label>vej og vejnummer: <input required placeholder="skriv her" type="text" name="vej-og-nummer"/></label>
         </p>
         <p>
-          <label>vej og vejnummer: <input required placeholder="skriv her" type="text" name="vej-og-nummer" /></label>
-        </p>
-        <p>
-          <label>andre kommentare: <input placeholder="skriv her" type="text" name="kommentar" /></label>
+          <label>andre kommentare: <input placeholder="skriv her" type="text" name="kommentar"/></label>
         </p>
         <p>
           <button type="submit" class="buy-button">
