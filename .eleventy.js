@@ -5,13 +5,4 @@ export default function(eleventyConfig) {
   // Ignore files
   eleventyConfig.ignores.add("readme.md");
   eleventyConfig.ignores.add("unicode.html");
-
-  return {
-    dir: {
-      input: ".",
-      output: "_site",
-      includes: "_includes",
-      data: "_data"
-    }
-  };
 };
