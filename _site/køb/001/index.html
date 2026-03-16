@@ -414,7 +414,11 @@ a:active button .star-6 {
           → betal her
         </a>
       </h3>
-      <form name="addresse" method="POST" netlify>
+      <form name="addresse" method="POST" netlify netlify-honeypot="bot-field" action="/tak">
+        <input type="hidden" name="form-name" value="addresse"/>
+        <p style="display: none;">
+          <label>Don't fill this out: <input name="bot-field"/></label>
+        </p>
         <input type="hidden" name="item-id" value="001"/>
         <p>
           <label>vej og vejnummer: <input required placeholder="skriv her" type="text" name="vej-og-nummer"/></label>
