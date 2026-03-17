@@ -1,0 +1,73 @@
+---
+layout: layout.njk
+title: "Kalorie Tæller"
+description: "Simpel kalorie tæller"
+backLink: true
+---
+
+<div class="buy-page">
+  <div class="buy-card">
+    <div class="card-details">
+      <h2>Kalorie Tæller</h2>
+      
+      <form id="calorieForm">
+        <p>
+          <label>Gram: <input type="number" id="grams" placeholder="100" /></label>
+        </p>
+        <p>
+          <label>Kcal/100g: <input type="number" id="kcalPer100" placeholder="50" /></label>
+        </p>
+        <p>
+          <button type="submit">Tilføj</button>
+        </p>
+      </form>
+
+      <h3>Total: <span id="totalCalories">0</span> kcal</h3>
+
+      <ul id="itemsList"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('calorieForm');
+  const gramInput = document.getElementById('grams');
+  const kcalInput = document.getElementById('kcalPer100');
+  const totalDisplay = document.getElementById('totalCalories');
+  const itemsList = document.getElementById('itemsList');
+  
+  let items = [];
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const grams = parseFloat(gramInput.value);
+    const kcalPer100 = parseFloat(kcalInput.value);
+    
+    if (!grams || !kcalPer100) return;
+    
+    const totalKcal = (grams * kcalPer100) / 100;
+    
+    items.push({ grams, kcalPer100, totalKcal });
+    
+    updateDisplay();
+    
+    gramInput.value = '';
+    kcalInput.value = '';
+  });
+  
+  function updateDisplay() {
+    const total = items.reduce((sum, item) => sum + item.totalKcal, 0);
+    totalDisplay.textContent = Math.round(total);
+    
+    itemsList.innerHTML = items.map((item, index) => 
+      `<li>${item.grams}g × ${item.kcalPer100} kcal/100g = ${Math.round(item.totalKcal)} kcal 
+       <button onclick="removeItem(${index})">×</button></li>`
+    ).join('');
+  }
+  
+  function removeItem(index) {
+    items.splice(index, 1);
+    updateDisplay();
+  }
+</script>
