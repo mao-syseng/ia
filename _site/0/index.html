@@ -412,11 +412,12 @@ a:active button .star-6 {
       <form id="calorieForm">
         <p>
           <label
-            >Format: grams kcal/100g [buffer]<br />
+            >Format: grams,kcal/100g[,buffer]<br />
             <input
-              type="tel"
+              type="text"
+              inputmode="decimal"
               id="calorieInput"
-              placeholder="100 50"
+              placeholder="100,50"
               style="width: 100%"
           /></label>
         </p>
@@ -443,10 +444,10 @@ a:active button .star-6 {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const values = calorieInput.value.trim().split(/\s+/);
+    const values = calorieInput.value.trim().split(',');
 
     if (values.length < 2) {
-      alert("Format: grams kcal/100g buffer (buffer is optional)");
+      alert("Format: grams,kcal/100g[,buffer]");
       return;
     }
 
