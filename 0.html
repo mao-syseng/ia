@@ -9,13 +9,17 @@ backLink: true
   <div class="buy-card">
     <div class="card-details">
       <h2>Kalorie Tæller</h2>
-      
+
       <form id="calorieForm">
         <p>
-          <label>Gram: <input type="number" id="grams" placeholder="100" /></label>
-        </p>
-        <p>
-          <label>Kcal/100g: <input type="number" id="kcalPer100" placeholder="50" /></label>
+          <label
+            >Format: grams kcal/100g [buffer]<br />
+            <input
+              type="text"
+              id="calorieInput"
+              placeholder="100 50"
+              style="width: 100%"
+          /></label>
         </p>
         <p>
           <button type="submit">Tilføj</button>
@@ -30,42 +34,59 @@ backLink: true
 </div>
 
 <script>
-  const form = document.getElementById('calorieForm');
-  const gramInput = document.getElementById('grams');
-  const kcalInput = document.getElementById('kcalPer100');
-  const totalDisplay = document.getElementById('totalCalories');
-  const itemsList = document.getElementById('itemsList');
-  
+  const form = document.getElementById("calorieForm");
+  const calorieInput = document.getElementById("calorieInput");
+  const totalDisplay = document.getElementById("totalCalories");
+  const itemsList = document.getElementById("itemsList");
+
   let items = [];
-  
-  form.addEventListener('submit', (e) => {
+
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    
-    const grams = parseFloat(gramInput.value);
-    const kcalPer100 = parseFloat(kcalInput.value);
-    
-    if (!grams || !kcalPer100) return;
-    
-    const totalKcal = (grams * kcalPer100) / 100;
-    
-    items.push({ grams, kcalPer100, totalKcal });
-    
+
+    const values = calorieInput.value.trim().split(/\s+/);
+
+    if (values.length < 2) {
+      alert("Format: grams kcal/100g buffer (buffer is optional)");
+      return;
+    }
+
+    const grams = parseFloat(values[0]);
+    const kcalPer100 = parseFloat(values[1]);
+    const buffer = values[2] ? parseFloat(values[2]) : 0;
+
+    if (isNaN(grams) || isNaN(kcalPer100)) {
+      alert("Please enter valid numbers");
+      return;
+    }
+
+    if (values[2] && isNaN(buffer)) {
+      alert("Buffer must be a valid number");
+      return;
+    }
+
+    const totalKcal = (grams * kcalPer100) / 100 + buffer;
+
+    items.push({ grams, kcalPer100, buffer, totalKcal });
+
     updateDisplay();
-    
-    gramInput.value = '';
-    kcalInput.value = '';
+
+    calorieInput.value = "";
+    calorieInput.focus();
   });
-  
+
   function updateDisplay() {
     const total = items.reduce((sum, item) => sum + item.totalKcal, 0);
     totalDisplay.textContent = Math.round(total);
-    
-    itemsList.innerHTML = items.map((item, index) => 
-      `<li>${item.grams}g × ${item.kcalPer100} kcal/100g = ${Math.round(item.totalKcal)} kcal 
-       <button onclick="removeItem(${index})">×</button></li>`
-    ).join('');
+
+    itemsList.innerHTML = items
+      .map(
+        (item, index) =>
+          `<li onclick="removeItem(${index})">${item.grams}g × ${item.kcalPer100} kcal/100g ${item.buffer ? `+ ${item.buffer}` : ""} = ${Math.round(item.totalKcal)} kcal </li>`,
+      )
+      .join("");
   }
-  
+
   function removeItem(index) {
     items.splice(index, 1);
     updateDisplay();
