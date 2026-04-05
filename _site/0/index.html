@@ -34,6 +34,10 @@
           <h3>Total: <span id="totalCalories" class="a">0</span> kcal</h3>
 
           <ul id="itemsList"></ul>
+
+          <p>
+            <button type="button" onclick="clearAll()" class="clear-btn">Ryd alt</button>
+          </p>
         </div>
       </div>
     </div>
@@ -45,6 +49,27 @@
       const itemsList = document.getElementById("itemsList");
 
       let items = [];
+
+      // Load items from localStorage on page load
+      function loadItems() {
+        const stored = localStorage.getItem("calorieItems");
+        if (stored) {
+          try {
+            items = JSON.parse(stored);
+            updateDisplay();
+          } catch (e) {
+            console.error("Error loading items:", e);
+          }
+        }
+      }
+
+      // Save items to localStorage
+      function saveItems() {
+        localStorage.setItem("calorieItems", JSON.stringify(items));
+      }
+
+      // Load items when page loads
+      loadItems();
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -74,6 +99,7 @@
 
         items.push({ grams, kcalPer100, buffer, totalKcal });
 
+        saveItems();
         updateDisplay();
 
         calorieInput.value = "";
@@ -94,6 +120,13 @@
 
       function removeItem(index) {
         items.splice(index, 1);
+        saveItems();
+        updateDisplay();
+      }
+
+      function clearAll() {
+        items = [];
+        saveItems();
         updateDisplay();
       }
     </script>
