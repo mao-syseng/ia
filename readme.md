@@ -3,3 +3,6 @@
 
 
 https://buymeacoffee.com/iadk
+
+## Links
+Retro gifs: https://cyber.dabamos.de/88x31/index.html
