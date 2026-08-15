@@ -1,5 +1,3 @@
+Removed eleventy since i only edit every half year and forgot everything. Now just use basic boring html pages.
 
-` magick ./img/002.png -resize 190 -quality 80 002.webp`
-
-
-https://buymeacoffee.com/iadk
+need to clean this up from earlier version: https://buymeacoffee.com/iadk
