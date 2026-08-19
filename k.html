@@ -1,61 +1,136 @@
 <!doctype html>
-<html lang="en">
+<html lang="da">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/style.css" />
-    <title>Klima</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Simpel kalorie tæller" />
+    <title>Kalorie Tæller</title>
   </head>
   <body>
-    <h1>Klima</h1>
+    <div class="buy-page">
+      <div class="buy-card">
+        <div class="card-details">
+          <h2><span class="a">iå.dk</span> kalorie tæller</h2>
 
-    <video
-      src="/climate.mp4"
-      controls
-      width="100%"
-      style="max-width: 800px"
-    ></video>
+          <form id="calorieForm">
+            <p>
+              <label class="b"
+                >Format: grams,kcal/100g[,buffer]<br />
+                <input
+                  type="text"
+                  inputmode="decimal"
+                  id="calorieInput"
+                  placeholder="100,50"
+                  style="width: 100%"
+              /></label>
+            </p>
+            <p>
+              <button type="submit">Tilføj</button>
+            </p>
+          </form>
 
-    <h2>Hvordan er det målt?</h2>
+          <h3>Total: <span id="totalCalories" class="a">0</span> kcal</h3>
 
-    <blockquote>
-      <p>
-        The
-        <a href="https://climate.copernicus.eu/"
-          >Copernicus Climate Change Service (C3S)</a
-        >, operated by the European Centre for Medium-Range Weather Forecasts
-        (ECMWF), collects temperature data by combining billions of physical
-        observations from air, land, sea, and space using a method called
-        climate reanalysis.
-      </p>
+          <ul id="itemsList"></ul>
 
-      <p><strong>Observational Data Inputs:</strong></p>
+          <p>
+            <button type="button" onclick="clearAll()" class="clear-btn">
+              Ryd alt
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
 
-      <p>
-        <strong>In Situ Surface Stations:</strong> Direct air temperature
-        readings measured at 2 meters above ground level across thousands of
-        weather stations managed by national meteorological agencies worldwide.
-      </p>
+    <script>
+      const form = document.getElementById("calorieForm");
+      const calorieInput = document.getElementById("calorieInput");
+      const totalDisplay = document.getElementById("totalCalories");
+      const itemsList = document.getElementById("itemsList");
 
-      <p>
-        <strong>Marine Sensors:</strong> Surface air, sea-surface temperature
-        (SST), and sea-ice measurements collected from ships, drifting and
-        moored buoys, and autonomous ocean floats.
-      </p>
+      let items = [];
 
-      <p>
-        <strong>Satellite Remote Sensing:</strong> Infrared and microwave
-        radiances captured by polar-orbiting and geostationary satellites, which
-        are mathematically converted into ground and atmospheric temperature
-        readings.
-      </p>
+      // Load items from localStorage on page load
+      function loadItems() {
+        const stored = localStorage.getItem("calorieItems");
+        if (stored) {
+          try {
+            items = JSON.parse(stored);
+            updateDisplay();
+          } catch (e) {
+            console.error("Error loading items:", e);
+          }
+        }
+      }
 
-      <p>
-        <strong>Atmospheric Profiling:</strong> Temperature soundings from
-        radiosonde weather balloons and automated sensor networks installed on
-        commercial aircraft.
-      </p>
-    </blockquote>
+      // Save items to localStorage
+      function saveItems() {
+        localStorage.setItem("calorieItems", JSON.stringify(items));
+      }
+
+      // Load items when page loads
+      loadItems();
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const values = calorieInput.value.trim().split(",");
+
+        if (values.length < 2) {
+          alert("Format: grams,kcal/100g[,buffer]");
+          return;
+        }
+
+        const grams = parseFloat(values[0]);
+        const kcalPer100 = parseFloat(values[1]);
+        const buffer = values[2] ? parseFloat(values[2]) : 0;
+
+        if (isNaN(grams) || isNaN(kcalPer100)) {
+          alert("Please enter valid numbers");
+          return;
+        }
+
+        if (values[2] && isNaN(buffer)) {
+          alert("Buffer must be a valid number");
+          return;
+        }
+
+        const totalKcal = (grams * kcalPer100) / 100 + buffer;
+
+        items.push({ grams, kcalPer100, buffer, totalKcal });
+
+        saveItems();
+        updateDisplay();
+
+        calorieInput.value = "";
+        calorieInput.focus();
+      });
+
+      function updateDisplay() {
+        const total = items.reduce((sum, item) => sum + item.totalKcal, 0);
+        totalDisplay.textContent = Math.round(total);
+
+        itemsList.innerHTML = items
+          .map(
+            (item, index) =>
+              `<li onclick="removeItem(${index})">${item.grams}g × ${item.kcalPer100} kcal/100g ${item.buffer ? `+ ${item.buffer}` : ""} = ${Math.round(item.totalKcal)} kcal </li>`,
+          )
+          .join("");
+      }
+
+      function removeItem(index) {
+        items.splice(index, 1);
+        saveItems();
+        updateDisplay();
+      }
+
+      function clearAll() {
+        items = [];
+        saveItems();
+        updateDisplay();
+      }
+    </script>
   </body>
 </html>
