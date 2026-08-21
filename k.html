@@ -1,136 +1,134 @@
 <!doctype html>
 <html lang="da">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Simpel kalorie tæller" />
-    <title>Kalorie Tæller</title>
-  </head>
-  <body>
-    <div class="buy-page">
-      <div class="buy-card">
-        <div class="card-details">
-          <h2><span class="a">iå.dk</span> kalorie tæller</h2>
 
-          <form id="calorieForm">
-            <p>
-              <label class="b"
-                >Format: grams,kcal/100g[,buffer]<br />
-                <input
-                  type="text"
-                  inputmode="decimal"
-                  id="calorieInput"
-                  placeholder="100,50"
-                  style="width: 100%"
-              /></label>
-            </p>
-            <p>
-              <button type="submit">Tilføj</button>
-            </p>
-          </form>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Simpel kalorie tæller" />
+  <title>Kalorie Tæller</title>
+</head>
 
-          <h3>Total: <span id="totalCalories" class="a">0</span> kcal</h3>
+<body>
+  <main class="container">
+    <div>
+      <hgroup>
 
-          <ul id="itemsList"></ul>
+        <h2>kalorie tæller</h2>
+        <p>fungere bedst på telefon </p>
+      </hgroup>
 
-          <p>
-            <button type="button" onclick="clearAll()" class="clear-btn">
-              Ryd alt
-            </button>
-          </p>
-        </div>
-      </div>
+      <form id="calorieForm">
+        <p>
+          <label class="b">format: grams,kcal/100g[,buffer]<br />
+            <input type="text" inputmode="decimal" id="calorieInput" placeholder="100,50" style="width: 100%" /></label>
+        </p>
+        <p>
+          <button type="submit">Tilføj</button>
+        </p>
+      </form>
+
+      <h3>total: <span id="totalCalories" class="a">0</span> kcal</h3>
+
+      <ul id="itemsList"></ul>
+
+      <p>
+        <button type="button" onclick="clearAll()" class="clear-btn">
+          ryd alt
+        </button>
+      </p>
     </div>
+  </main>
 
-    <script>
-      const form = document.getElementById("calorieForm");
-      const calorieInput = document.getElementById("calorieInput");
-      const totalDisplay = document.getElementById("totalCalories");
-      const itemsList = document.getElementById("itemsList");
+  <script>
+    const form = document.getElementById("calorieForm");
+    const calorieInput = document.getElementById("calorieInput");
+    const totalDisplay = document.getElementById("totalCalories");
+    const itemsList = document.getElementById("itemsList");
 
-      let items = [];
+    let items = [];
 
-      // Load items from localStorage on page load
-      function loadItems() {
-        const stored = localStorage.getItem("calorieItems");
-        if (stored) {
-          try {
-            items = JSON.parse(stored);
-            updateDisplay();
-          } catch (e) {
-            console.error("Error loading items:", e);
-          }
+    // Load items from localStorage on page load
+    function loadItems() {
+      const stored = localStorage.getItem("calorieItems");
+      if (stored) {
+        try {
+          items = JSON.parse(stored);
+          updateDisplay();
+        } catch (e) {
+          console.error("Error loading items:", e);
         }
       }
+    }
 
-      // Save items to localStorage
-      function saveItems() {
-        localStorage.setItem("calorieItems", JSON.stringify(items));
+    // Save items to localStorage
+    function saveItems() {
+      localStorage.setItem("calorieItems", JSON.stringify(items));
+    }
+
+    // Load items when page loads
+    loadItems();
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const values = calorieInput.value.trim().split(",");
+
+      if (values.length < 2) {
+        alert("Format: grams,kcal/100g[,buffer]");
+        return;
       }
 
-      // Load items when page loads
-      loadItems();
+      const grams = parseFloat(values[0]);
+      const kcalPer100 = parseFloat(values[1]);
+      const buffer = values[2] ? parseFloat(values[2]) : 0;
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const values = calorieInput.value.trim().split(",");
-
-        if (values.length < 2) {
-          alert("Format: grams,kcal/100g[,buffer]");
-          return;
-        }
-
-        const grams = parseFloat(values[0]);
-        const kcalPer100 = parseFloat(values[1]);
-        const buffer = values[2] ? parseFloat(values[2]) : 0;
-
-        if (isNaN(grams) || isNaN(kcalPer100)) {
-          alert("Please enter valid numbers");
-          return;
-        }
-
-        if (values[2] && isNaN(buffer)) {
-          alert("Buffer must be a valid number");
-          return;
-        }
-
-        const totalKcal = (grams * kcalPer100) / 100 + buffer;
-
-        items.push({ grams, kcalPer100, buffer, totalKcal });
-
-        saveItems();
-        updateDisplay();
-
-        calorieInput.value = "";
-        calorieInput.focus();
-      });
-
-      function updateDisplay() {
-        const total = items.reduce((sum, item) => sum + item.totalKcal, 0);
-        totalDisplay.textContent = Math.round(total);
-
-        itemsList.innerHTML = items
-          .map(
-            (item, index) =>
-              `<li onclick="removeItem(${index})">${item.grams}g × ${item.kcalPer100} kcal/100g ${item.buffer ? `+ ${item.buffer}` : ""} = ${Math.round(item.totalKcal)} kcal </li>`,
-          )
-          .join("");
+      if (isNaN(grams) || isNaN(kcalPer100)) {
+        alert("Please enter valid numbers");
+        return;
       }
 
-      function removeItem(index) {
-        items.splice(index, 1);
-        saveItems();
-        updateDisplay();
+      if (values[2] && isNaN(buffer)) {
+        alert("Buffer must be a valid number");
+        return;
       }
 
-      function clearAll() {
-        items = [];
-        saveItems();
-        updateDisplay();
-      }
-    </script>
-  </body>
+      const totalKcal = (grams * kcalPer100) / 100 + buffer;
+
+      items.push({ grams, kcalPer100, buffer, totalKcal });
+
+      saveItems();
+      updateDisplay();
+
+      calorieInput.value = "";
+      calorieInput.focus();
+    });
+
+    function updateDisplay() {
+      const total = items.reduce((sum, item) => sum + item.totalKcal, 0);
+      totalDisplay.textContent = Math.round(total);
+
+      itemsList.innerHTML = items
+        .map(
+          (item, index) =>
+            `<li onclick="removeItem(${index})">${item.grams}g × ${item.kcalPer100} kcal/100g ${item.buffer ? `+ ${item.buffer}` : ""} = ${Math.round(item.totalKcal)} kcal </li>`,
+        )
+        .join("");
+    }
+
+    function removeItem(index) {
+      items.splice(index, 1);
+      saveItems();
+      updateDisplay();
+    }
+
+    function clearAll() {
+      items = [];
+      saveItems();
+      updateDisplay();
+    }
+  </script>
+</body>
+
 </html>
